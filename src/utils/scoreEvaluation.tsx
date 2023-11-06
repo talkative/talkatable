@@ -28,5 +28,3 @@ const scoreEvaluation = (player1: PlayerInGame, player2: PlayerInGame) => {
   }
 };
 export default scoreEvaluation;
-
-// Call updateWinsAndLosses for the respective players after calling logWinner

@@ -1,19 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@components/atoms/Button";
 import { useNavigate } from "react-router";
 import useGetPlayers from "@hooks/useGetPlayers";
+import clsx from "clsx";
+import { Player } from "@types/Game.types";
+import { useEffect } from "react";
 
 //* Firebase till tabell
 
 const Leaderboard = () => {
   const navigate = useNavigate();
-  const players = useGetPlayers();
+  const initialPlayers = useGetPlayers();
+  const [players, setPlayers] = useState(initialPlayers);
+
+  const [sortConfig, setSortConfig] = useState({
+    key: "",
+    direction: "",
+  });
+
+  // TODO ändra till GameContext/Gamesession
+
+  useEffect(() => {
+    if (initialPlayers.length > 0) {
+      setPlayers(initialPlayers);
+    }
+  }, [initialPlayers]); //* Läs på om useEffect
 
   const handleGoBack = () => {
     navigate("/Home");
   };
 
-  // TODO - Sortera tabell efter Rating eller wins
+  //* Vad gör keyofPlayer mer konkret?
+  const sortBy = (key: keyof Player) => {
+    const sortedPlayers = [...initialPlayers];
+    if (sortConfig.key === key && sortConfig.direction === "ascending") {
+      sortedPlayers.sort((a, b) => (a[key] > b[key] ? 1 : -1));
+      setSortConfig({ key, direction: "descending" });
+    } else {
+      sortedPlayers.sort((a, b) => (a[key] < b[key] ? 1 : -1));
+      setSortConfig({ key, direction: "ascending" });
+    }
+    setPlayers(sortedPlayers);
+  };
+
   return (
     <div className="bg-background-color w-screen h-screen p-2 relative">
       <div className="flex items-center mt-40">
@@ -21,25 +50,40 @@ const Leaderboard = () => {
           <table className="table-auto bg-pink-300 border-collapse w-full h-full min-w-full divide-y divide-gray-500">
             <thead className="bg-table-header-color border-b-2 border-gray-200 text-white sticky top-0">
               <tr>
-                <th className="p-1 text-sm font-bold tracking-wide text-left">
+                <th
+                  className="p-1 text-sm font-bold tracking-wide text-left"
+                  onClick={() => sortBy("name")}
+                >
                   Namn
                 </th>
-                <th className="p-1 text-sm font-semibold tracking-wide text-center">
+                <th
+                  className="p-1 text-sm font-semibold tracking-wide text-center"
+                  onClick={() => sortBy("wins")}
+                >
                   V
                 </th>
-                <th className="p-1 text-sm font-semibold tracking-wide text-center">
+                <th
+                  className="p-1 text-sm font-semibold tracking-wide text-center"
+                  onClick={() => sortBy("losses")}
+                >
                   F
                 </th>
-                <th className="p-1 text-sm font-semibold tracking-wide text-cecenter">
+                <th
+                  className="p-1 text-sm font-semibold tracking-wide text-cecenter"
+                  onClick={() => sortBy("rank")}
+                >
                   Rank
                 </th>
-                <th className="p-1 text-sm font-semibold tracking-wide text-center">
+                <th
+                  className="p-1 text-sm font-semibold tracking-wide text-center"
+                  onClick={() => sortBy("rating")}
+                >
                   Rating
                 </th>
               </tr>
             </thead>
             <tbody>
-              {players.map((item, index) => (
+              {players.map((item) => (
                 <tr
                   key={item.id}
                   className="odd:bg-table-light-color even:bg-table-dark-color"

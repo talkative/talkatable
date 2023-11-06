@@ -27,10 +27,6 @@ type GameSessionAction =
   | {
       type: "resetScore";
       playerId: string;
-    }
-  | {
-      type: "updateWinsAndLosses";
-      playerId: string;
     };
 
 // https://react.dev/reference/react/useReducer
@@ -66,20 +62,15 @@ export const useHandleGameSession = () => {
 
         return decrementedPlayer;
       }
-      // TODO - Resetar bara en player.
+
       case "resetScore": {
-        console.log("Resetting score for id:", action.playerId);
+        console.log("Resetting score");
 
-        const resetPlayer = state.map((player) =>
-          player.id === action.playerId
-            ? {
-                ...player,
-                points: 0,
-              }
-            : player
-        );
+        const resetPlayer = state.map((player) => ({
+          ...player,
+          points: 0,
+        }));
 
-        console.log("In resetscore");
         return resetPlayer;
       }
       case "setPlayers": {
@@ -105,6 +96,7 @@ export const useHandleGameSession = () => {
 
         return chosenPlayers;
       }
+
       default:
         return state;
     }
