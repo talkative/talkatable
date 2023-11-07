@@ -29,12 +29,23 @@ const app = initializeApp(firebaseConfig);
 // init service
 const db = getFirestore(app);
 
-const updatePlayerStats = (playerId: string, wins: number, losses: number) => {
+const updatePlayerStats = ({
+  playerId,
+  wins,
+  losses,
+  rating,
+}: {
+  playerId: string;
+  wins: number;
+  losses: number;
+  rating: number;
+}) => {
   const playerRef = doc(db, "profiles", playerId);
 
   updateDoc(playerRef, {
     wins: wins,
     losses: losses,
+    rating: rating,
   })
     .then(() => {
       console.log("Player stats updated successfully");
