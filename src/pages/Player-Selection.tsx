@@ -2,7 +2,7 @@ import Button from "@components/atoms/Button";
 import { useNavigate } from "react-router";
 import { playerImgs } from "@utils/playerImages";
 import { GameContextType, useGameContext } from "providers/GameProvider";
-import { useState } from "react";
+import useHandleGameSession from "@hooks/useGetPlayers/useHandleGameSession";
 
 const PlayerSelection = () => {
   const navigate = useNavigate();
@@ -12,6 +12,8 @@ const PlayerSelection = () => {
     // await create game -> get game id -> navigate to game with game id
     navigate("/Game");
   }
+
+  const hasChosenPlayers = gameSession.length > 1;
 
   function handleChoosePlayer() {
     navigate("/Playergrid");
@@ -30,7 +32,11 @@ const PlayerSelection = () => {
           </Button>
         </div>
         <div className="py-2">
-          <Button onClick={handleStartGame} className="font-abc">
+          <Button
+            onClick={handleStartGame}
+            className="font-abc"
+            disabled={!hasChosenPlayers}
+          >
             Starta match
           </Button>
         </div>

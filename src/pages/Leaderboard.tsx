@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import Button from "@components/atoms/Button";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+
+import Button from "@components/atoms/Button";
+
 import useGetPlayers from "@hooks/useGetPlayers";
-import clsx from "clsx";
-import { Player } from "@types/Game.types";
-import { useEffect } from "react";
+
+import type { Player } from "@types/Game.types";
 
 //* Firebase till tabell
 
@@ -30,7 +31,7 @@ const Leaderboard = () => {
     navigate("/Home");
   };
 
-  //* Vad gör keyofPlayer mer konkret?
+  //* Vad gör keyofPlayer mer exakt??
   const sortBy = (key: keyof Player) => {
     const sortedPlayers = [...initialPlayers];
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
