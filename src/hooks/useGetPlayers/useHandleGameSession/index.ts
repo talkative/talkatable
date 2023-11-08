@@ -27,6 +27,10 @@ type GameSessionAction =
   | {
       type: "resetScore";
       playerId: string;
+    }
+  | {
+      type: "evenScore";
+      playerId: string;
     };
 
 // https://react.dev/reference/react/useReducer
@@ -64,8 +68,6 @@ export const useHandleGameSession = () => {
       }
 
       case "resetScore": {
-        console.log("Resetting score");
-
         const resetPlayer = state.map((player) => ({
           ...player,
           points: 0,
@@ -95,6 +97,9 @@ export const useHandleGameSession = () => {
         const chosenPlayers = [...state, player];
 
         return chosenPlayers;
+      }
+      case "evenScore": {
+        return;
       }
 
       default:
