@@ -16,17 +16,15 @@ export const PlayerInfo = ({
         />
       </div>
       <div className="flex justify-center mb-4">
-        <h3>{player.name}</h3>
+        <div>
+          <h3 className="flex items-center justify-center text-center flex-col">
+            {player.name}
+          </h3>
+          <h2>{player.rank}</h2>
+        </div>
       </div>
     </div>
   );
-  // <div className=" border-black border-2 w-full" key={player.name}>
-  //   <img
-  //     src={players.find((person) => person.name === player.name)?.src}
-  //     className="object-cover rounded-full mb-4 mt-16 h-44 w-44"
-  //   />
-  //   <p className="w-full text-center">{player.name}</p>
-  // </div>
 };
 
 export default PlayerInfo;
