@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { playerImgs } from "@utils/playerImages";
 import { GameContextType, useGameContext } from "providers/GameProvider";
 import useHandleGameSession from "@hooks/useGetPlayers/useHandleGameSession";
+import { ranks } from "@utils/ranks";
 
 const PlayerSelection = () => {
   const navigate = useNavigate();
@@ -68,6 +69,7 @@ const ChosenPlayers = ({ players }: { players: GameContextType["state"] }) => {
                     src={playerImgs.find((img) => img.id === player.name)?.src}
                   />
                   <div className="flex">{player.name}</div>
+                  <div>{player.rank}</div>
                 </div>
               );
             })}
