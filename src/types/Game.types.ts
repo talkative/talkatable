@@ -5,6 +5,7 @@ export interface Player {
   rating: number;
   wins: number;
   losses: number;
+  ratio: number;
 }
 
 export interface PlayerInGame extends Player {
