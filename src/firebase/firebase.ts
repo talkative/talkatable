@@ -34,18 +34,24 @@ const updatePlayerStats = ({
   wins,
   losses,
   rating,
+  ratio,
+  rank,
 }: {
   playerId: string;
   wins: number;
   losses: number;
   rating: number;
+  ratio: number;
+  rank: string;
 }) => {
   const playerRef = doc(db, "profiles", playerId);
 
   updateDoc(playerRef, {
-    wins: wins,
-    losses: losses,
-    rating: rating,
+    wins,
+    losses,
+    rating,
+    ratio,
+    rank,
   })
     .then(() => {
       console.log("Player stats updated successfully");
