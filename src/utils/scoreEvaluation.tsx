@@ -7,11 +7,14 @@ import { updatePlayerStats } from "@firebase/firebase";
 
 import { calculatePlayerRatings } from "@utils/eloRating";
 import { PlayerInGame } from "@types/Game.types";
+import { getRank } from "./ranks";
 
 const scoreEvaluation = (player1: PlayerInGame, player2: PlayerInGame) => {
   const playerOneWins = player1.points > player2.points;
   const playerTwoWins = player1.points < player2.points;
   const evenScore = player1.points === player2.points;
+  const playerOneRatio = player1.wins / player1.losses;
+  const playerTwoRatio = player2.wins / player2.losses;
 
   if (playerOneWins) {
     player1.wins += 1;
@@ -23,12 +26,16 @@ const scoreEvaluation = (player1: PlayerInGame, player2: PlayerInGame) => {
       { ...player2, playerWon: false },
     ]);
     console.log(calculatedRating, "<-----");
+    const newRankPlayerOne = getRank(calculatedRating.newRatingOne);
+    const newRankPlayerTwo = getRank(calculatedRating.newRatingTwo);
 
     updatePlayerStats({
       playerId: player1.id,
       wins: player1.wins,
       losses: player1.losses,
       rating: calculatedRating.newRatingOne,
+      ratio: playerOneRatio,
+      rank: newRankPlayerOne,
     });
 
     updatePlayerStats({
@@ -36,8 +43,11 @@ const scoreEvaluation = (player1: PlayerInGame, player2: PlayerInGame) => {
       wins: player2.wins,
       losses: player2.losses,
       rating: calculatedRating.newRatingTwo,
+      ratio: playerTwoRatio,
+      rank: newRankPlayerTwo,
     });
-
+    console.log(playerOneRatio, "<--- Player one ratio");
+    console.log(playerTwoRatio, "<---- Player two ratio");
     return calculatedRating;
   } else if (playerTwoWins) {
     player1.losses += 1;
@@ -47,11 +57,14 @@ const scoreEvaluation = (player1: PlayerInGame, player2: PlayerInGame) => {
       { ...player1, playerWon: false },
       { ...player2, playerWon: true },
     ]);
+    const newRankPlayerOne = getRank(calculatedRating.newRatingOne);
+    const newRankPlayerTwo = getRank(calculatedRating.newRatingTwo);
     updatePlayerStats({
       playerId: player1.id,
       wins: player1.wins,
       losses: player1.losses,
       rating: calculatedRating.newRatingOne,
+      rank: newRankPlayerOne,
     });
 
     updatePlayerStats({
@@ -59,6 +72,7 @@ const scoreEvaluation = (player1: PlayerInGame, player2: PlayerInGame) => {
       wins: player2.wins,
       losses: player2.losses,
       rating: calculatedRating.newRatingTwo,
+      rank: newRankPlayerTwo,
     });
     return calculatedRating;
   } else {
