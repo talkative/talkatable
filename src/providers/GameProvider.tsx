@@ -1,3 +1,4 @@
+import Game from "pages/Game";
 import { useContext, createContext, DispatchWithoutAction } from "react";
 
 export interface GameContextType {
@@ -9,6 +10,7 @@ export interface GameContextType {
     rating: number;
     wins: number;
     points: number;
+    ratio: number;
   }[];
 
   //TODO FIXA TYPEN HÄR FÖR FAN :D
