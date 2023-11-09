@@ -47,7 +47,7 @@ const Leaderboard = () => {
   return (
     <div className="bg-background-color w-screen h-screen p-2 relative">
       <div className="flex items-center mt-40">
-        <div className="overflow-x overflow-y-scroll w-full">
+        <div className="overflow-x overflow-y-scroll w-full px-4">
           <table className="table-auto bg-pink-300 border-collapse w-full h-full min-w-full divide-y divide-gray-500">
             <thead className="bg-table-header-color border-b-2 border-gray-200 text-white sticky top-0">
               <tr>
@@ -59,15 +59,9 @@ const Leaderboard = () => {
                 </th>
                 <th
                   className="p-1 text-sm font-semibold tracking-wide text-center"
-                  onClick={() => sortBy("wins")}
+                  onClick={() => sortBy("ratio")}
                 >
-                  V
-                </th>
-                <th
-                  className="p-1 text-sm font-semibold tracking-wide text-center"
-                  onClick={() => sortBy("losses")}
-                >
-                  F
+                  V/F
                 </th>
                 <th
                   className="p-1 text-sm font-semibold tracking-wide text-cecenter"
@@ -90,8 +84,7 @@ const Leaderboard = () => {
                   className="odd:bg-table-light-color even:bg-table-dark-color"
                 >
                   <td className="text-left">{item.name}</td>
-                  <td className="text-center">{item.wins}</td>
-                  <td className="text-center">{item.losses}</td>
+                  <td className="text-center">{item.ratio.toFixed(1)}</td>
                   <td className="text-center">{item.rank}</td>
                   <td className="text-center">{item.rating}</td>
                 </tr>
