@@ -5,6 +5,7 @@ import useGetPlayers from "@hooks/useGetPlayers";
 import { playerImgs } from "@utils/playerImages";
 import { useGameContext } from "providers/GameProvider";
 import classNames from "classnames";
+import BackButton from "@components/atoms/BackButton";
 
 const PlayerGrid = () => {
   const players = useGetPlayers();
@@ -19,8 +20,6 @@ const PlayerGrid = () => {
     navigate("/Player-Selection");
   };
 
-  console.log("IN PLAYER GRID", gameSession);
-
   const handlePlayerSelection = (player) => {
     handleGameSession({
       type: "setPlayers",
@@ -30,10 +29,8 @@ const PlayerGrid = () => {
 
   return (
     <div className="bg-background-color w-screen h-screen p-4">
-      <div className="text-2xl pt-8 text-center text-white">
-        <h1 className="font-abc underline">Välj spelare</h1>
-      </div>
-      <div className="box-content w-full overflow-y-scroll h-3/4 py-4">
+      <BackButton onClick={handleGoBack} />
+      <div className="box-content w-full overflow-y-scroll h-4/6 py-8">
         <div className="grid grid-cols-3 gap-11 px-4 pt-4 py-4">
           {players.map((player) => (
             <div
