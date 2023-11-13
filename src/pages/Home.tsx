@@ -14,8 +14,14 @@ const Home = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-background-color">
-      {/* <img>https://talkative.se/img/talkative_badge.svg</img> */}
+    <div className="w-screen h-screen bg-background-color flex">
+      <div className="flex flex-col items-center justify-center h-2/3">
+        <img
+          src="./public/Talkative-logo.png"
+          alt="Talkative.logo"
+          className="w-3/5 mx-auto"
+        />
+      </div>
       <div className="p-4 absolute inset-x-0 bottom-6">
         <div className="py-2">
           <Button onClick={handleNewGame} className="font-abc">
