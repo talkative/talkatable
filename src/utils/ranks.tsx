@@ -1,7 +1,3 @@
-import { GameContextType, gameContext } from "providers/GameProvider";
-import useGetPlayers from "@hooks/useGetPlayers";
-import type { Player } from "@types/Game.types";
-
 export const ranks = [
   { name: "Wooden Paddle", pointsBracket: [0, 199] },
   { name: "Rubber Riser", pointsBracket: [200, 399] },
@@ -16,7 +12,7 @@ export const ranks = [
 
 export const getRank = (rating: number) => {
   const foundRank = ranks.find((rank) => {
-    return rating > rank.pointsBracket[0] && rating < rank.pointsBracket[1];
+    return rating >= rank.pointsBracket[0] && rating <= rank.pointsBracket[1];
   });
 
   return foundRank?.name;
