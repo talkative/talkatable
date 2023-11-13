@@ -7,6 +7,8 @@ import useGetPlayers from "@hooks/useGetPlayers";
 
 import type { Player } from "@types/Game.types";
 
+import BackButton from "@components/atoms/BackButton";
+
 //* Firebase till tabell
 
 const Leaderboard = () => {
@@ -45,8 +47,9 @@ const Leaderboard = () => {
   };
 
   return (
-    <div className="bg-background-color w-screen h-screen p-2 relative">
-      <div className="flex items-center mt-40">
+    <div className="bg-background-color w-screen h-screen p-4 relative">
+      <BackButton onClick={handleGoBack} />
+      <div className="flex items-center pt-16">
         <div className="overflow-x overflow-y-scroll w-full px-4">
           <table className="table-auto bg-pink-300 border-collapse w-full h-full min-w-full divide-y divide-gray-500">
             <thead className="bg-table-header-color border-b-2 border-gray-200 text-white sticky top-0">
