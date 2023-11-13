@@ -1,15 +1,10 @@
 import React, { useState, useReducer, useMemo } from "react";
 import Button from "@components/atoms/Button";
-import endTable from "@components/molecules/Endtable";
 import { useNavigate } from "react-router";
 import Playerinfo, { playerInfo } from "@components/molecules/Playerinfo";
-import Scoreboard, { scoreboard } from "@components/molecules/Scoreboard";
-import useHandleGameSession from "@hooks/useGetPlayers/useHandleGameSession";
-import type { PlayerInGame } from "@types/Game.types";
 import { useGameContext } from "providers/GameProvider";
-import { playerImgs } from "@utils/playerImages";
 import scoreEvaluation from "@utils/scoreEvaluation";
-import { updatePlayerStats } from "@firebase/firebase";
+import { BackButton } from "@components/atoms/BackButton";
 
 interface Game {
   id: string;
@@ -20,22 +15,45 @@ interface Game {
 const Game = () => {
   const navigate = useNavigate();
   const [gameFinished, setGameFinished] = useState<boolean>(false);
+  const { state: gameSession, handleGameSession } = useGameContext();
+  const resetPlayerPoints = () => {
+    gameSession[0].points = 0;
+    gameSession[1].points = 0;
+  };
+
+  const isButtonDisabled =
+    gameSession.length === 2 && gameSession[0].points === gameSession[1].points;
 
   function handleFinishedGame() {
     setGameFinished(true);
-    // evaulate score by importing function from ...path/folder/file
     scoreEvaluation(gameSession[0], gameSession[1]);
-    // update firebase by importing handler/hook from ...path/folder/file
   }
 
   function handleGoHome() {
+    resetPlayerPoints();
+
     navigate("/Home");
   }
-  const { state: gameSession, handleGameSession } = useGameContext();
+
+  function handleGoBack() {
+    navigate("/Player-Selection");
+  }
+
+  function handleNewGame() {
+    navigate("/Game");
+  }
+
+  const handleRematch = () => {
+    setGameFinished(true);
+    scoreEvaluation(gameSession[0], gameSession[1]);
+    resetPlayerPoints();
+    setGameFinished(false);
+  };
 
   return (
     <div className="w-screen h-screen bg-background-color flex flex-col items-center justify-center">
       <div className="flex absolute top-0 pt-8">
+        <BackButton onClick={handleGoBack}></BackButton>
         {gameSession?.map((player) => (
           <>
             {gameFinished ? (
@@ -90,15 +108,7 @@ const Game = () => {
             {gameFinished ? (
               <div className="absolute inset-x-0 p-4 bottom-6">
                 <div className="p-2">
-                  <Button
-                    className="font-abc"
-                    onClick={() =>
-                      handleGameSession({
-                        type: "resetScore",
-                        playerId: player.id,
-                      })
-                    }
-                  >
+                  <Button className="font-abc" onClick={handleRematch}>
                     Rematch
                   </Button>
                 </div>
@@ -111,7 +121,11 @@ const Game = () => {
             ) : (
               <div className="absolute inset-x-0 p-4 bottom-6">
                 <div className="pt-2">
-                  <Button className="font-abc" onClick={handleFinishedGame}>
+                  <Button
+                    className="font-abc"
+                    onClick={handleFinishedGame}
+                    disabled={isButtonDisabled}
+                  >
                     Slutför spel
                   </Button>
                 </div>
