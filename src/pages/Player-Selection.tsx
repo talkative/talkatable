@@ -2,15 +2,13 @@ import Button from "@components/atoms/Button";
 import { useNavigate } from "react-router";
 import { playerImgs } from "@utils/playerImages";
 import { GameContextType, useGameContext } from "providers/GameProvider";
-import useHandleGameSession from "@hooks/useGetPlayers/useHandleGameSession";
-import { ranks } from "@utils/ranks";
+import BackButton from "@components/atoms/BackButton";
 
 const PlayerSelection = () => {
   const navigate = useNavigate();
   const { state: gameSession, handleGameSession } = useGameContext();
 
   function handleStartGame() {
-    // await create game -> get game id -> navigate to game with game id
     navigate("/Game");
   }
 
@@ -20,11 +18,13 @@ const PlayerSelection = () => {
     navigate("/Playergrid");
   }
 
+  function handleGoBack() {
+    navigate("/Home");
+  }
+
   return (
     <div className="flex flex-col w-screen h-screen p-4 bg-background-color">
-      <div className="pt-8 text-2xl font-bold text-center text-white font-abc underline">
-        Välj spelare
-      </div>
+      <BackButton onClick={handleGoBack} />
       <ChosenPlayers players={gameSession} />
       <div className="p-4 absolute inset-x-0 bottom-6">
         <div className="py-2">
@@ -48,9 +48,12 @@ const PlayerSelection = () => {
 
 export default PlayerSelection;
 
-const ChosenPlayers = ({ players }: { players: GameContextType["state"] }) => {
+export const ChosenPlayers = ({
+  players,
+}: {
+  players: GameContextType["state"];
+}) => {
   const hasChosenPlayers = players.length > 1;
-  console.log(hasChosenPlayers, players);
 
   return (
     <>
@@ -61,14 +64,16 @@ const ChosenPlayers = ({ players }: { players: GameContextType["state"] }) => {
               return (
                 <div
                   key={player.name}
-                  className="flex items-center justify-center text-center flex-col"
+                  className="flex items-center justify-center text-center flex-col text-white "
                 >
                   <img
                     className="rounded-full p-6"
                     style={{ width: "190px", height: "190px" }}
                     src={playerImgs.find((img) => img.id === player.name)?.src}
                   />
-                  <div className="flex">{player.name}</div>
+                  <div className="flex text-2xl font-semibold">
+                    {player.name}
+                  </div>
                   <div>{player.rank}</div>
                 </div>
               );
@@ -76,15 +81,24 @@ const ChosenPlayers = ({ players }: { players: GameContextType["state"] }) => {
           </div>
         </>
       ) : (
-        <div className="flex items-center justify-center text-center flex-col">
-          <div className="flex mt-48">
-            <div className="flex items-center justify-cente space-x-6 mx-4">
-              <div className="bg-gray-200 rounded-full h-32 w-32 flex text-center items-center justify-center text-4xl">
-                ?
-              </div>
-              <div className="font-abc text-4xl">VS</div>
-              <div className="bg-gray-200 rounded-full h-32 w-32 text-center flex items-center justify-center text-4xl">
-                ?
+        <div
+          style={{
+            position: "absolute",
+            top: "40%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <div className="flex items-center justify-center text-center flex-col">
+            <div className="flex">
+              <div className="flex items-center justify-center space-x-6 mx-4">
+                <div className="bg-gray-200 rounded-full h-32 w-32 flex text-center items-center justify-center text-4xl">
+                  ?
+                </div>
+                <div className="font-abc text-4xl">VS</div>
+                <div className="bg-gray-200 rounded-full h-32 w-32 text-center flex items-center justify-center text-4xl">
+                  ?
+                </div>
               </div>
             </div>
           </div>
