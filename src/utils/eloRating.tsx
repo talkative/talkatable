@@ -16,8 +16,8 @@ export function calculatePlayerRatings(players: Player) {
     playerOne.rating
   );
 
-  console.log(playerOne, "'players in calculation function");
-  console.log(playerTwo, "'players in calculation function");
+  console.log(playerOne, "players in calculation function");
+  console.log(playerTwo, "players in calculation function");
 
   const newRatingOne = elo.updateRating(
     expectedPlayerOneScore,
