@@ -1,6 +1,4 @@
 import { initializeApp } from "firebase/app";
-import firebase from "firebase/app";
-import Playerinfo from "@components/molecules/Playerinfo";
 import "firebase/firestore"; // Make sure to include Firestore in your imports
 import {
   getFirestore,
@@ -60,20 +58,6 @@ const updatePlayerStats = ({
       console.error("Error updating player stats: ", error);
     });
 };
-// collection ref
-// const colRef = collection(db, "profiles");
-
-// real time collection data
-// getDocs(colRef).then((snapshot) => {
-//   let profiles = [];
-//   snapshot.docs.forEach((doc) => {
-//     profiles.push({ ...doc.data(), id: doc.id });
-//   });
-//   console.log(profiles);
-// });
-// // .catch((err) => {
-// //   console.log("Detta är fel");
-// // });
 
 // //* Add documents
 // const addProfileForm = document.querySelector(".add");
