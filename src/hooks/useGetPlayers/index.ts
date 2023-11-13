@@ -13,7 +13,6 @@ const useGetPlayers = (): Player[] => {
         ...doc.data(),
         id: doc.id,
       }));
-      console.log(newData);
       setPlayers(newData);
     });
   };
