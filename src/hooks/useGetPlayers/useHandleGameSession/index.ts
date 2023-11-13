@@ -10,9 +10,6 @@ type GameSessionState = GameContextType["state"];
 
 type GameSessionAction =
   | {
-      type: "reset";
-    }
-  | {
       type: "incrementPoints";
       playerId: string;
     }
@@ -21,15 +18,15 @@ type GameSessionAction =
       playerId: string;
     }
   | {
-      type: "setPlayers";
-      payload: GameContextType["state"];
-    }
-  | {
       type: "resetScore";
       playerId: string;
     }
   | {
-      type: "evenScore";
+      type: "setPlayers";
+      payload: GameContextType["state"];
+    }
+  | {
+      type: "resetPlayers";
       playerId: string;
     };
 
@@ -68,18 +65,13 @@ export const useHandleGameSession = () => {
       }
 
       case "resetScore": {
-        const resetPlayer = state.map((player) => ({
-          ...player,
-          points: 0,
-        }));
-
         return resetPlayer;
       }
       case "setPlayers": {
         const chosenPlayerExistsInSession = state.some(
           (player) => player.name === action.payload.name
         );
-        console.log(chosenPlayerExistsInSession, "<-----");
+
         const maximumPlayerAmountReached = state.length > 1;
 
         if (chosenPlayerExistsInSession) {
@@ -98,7 +90,7 @@ export const useHandleGameSession = () => {
 
         return chosenPlayers;
       }
-      case "evenScore": {
+      case "resetPlayers": {
         return;
       }
 
