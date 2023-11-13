@@ -65,6 +65,10 @@ export const useHandleGameSession = () => {
       }
 
       case "resetScore": {
+        const resetPlayer = state.map((player) => ({
+          ...player,
+          points: 0,
+        }));
         return resetPlayer;
       }
       case "setPlayers": {
