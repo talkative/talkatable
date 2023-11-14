@@ -10,8 +10,6 @@ interface Game {
   id: string;
 }
 
-// https://react.dev/reference/react/useReducer
-
 const Game = () => {
   const navigate = useNavigate();
   const [gameFinished, setGameFinished] = useState<boolean>(false);
@@ -21,6 +19,14 @@ const Game = () => {
     gameSession[1].points = 0;
   };
 
+  const emptyPlayerArray = () => {
+    gameSession.forEach((player) => {
+      handleGameSession({
+        type: "resetPlayers",
+        playerId: player.id,
+      });
+    });
+  };
   const isButtonDisabled =
     gameSession.length === 2 && gameSession[0].points === gameSession[1].points;
 
@@ -31,7 +37,7 @@ const Game = () => {
 
   function handleGoHome() {
     resetPlayerPoints();
-
+    emptyPlayerArray();
     navigate("/Home");
   }
 
@@ -52,8 +58,9 @@ const Game = () => {
 
   return (
     <div className="w-screen h-screen bg-background-color flex flex-col items-center justify-center">
+      <BackButton onClick={handleGoBack} />
+
       <div className="flex absolute top-0 pt-8">
-        <BackButton onClick={handleGoBack}></BackButton>
         {gameSession?.map((player) => (
           <>
             {gameFinished ? (
