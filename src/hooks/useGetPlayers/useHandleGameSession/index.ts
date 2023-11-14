@@ -1,5 +1,5 @@
 import { playerImgs } from "@utils/playerImages";
-import { GameContextType } from "providers/GameProvider";
+import { GameContextType, gameContext } from "providers/GameProvider";
 import { useReducer, Reducer } from "react";
 import { PlayerInfo } from "@components/molecules/Playerinfo";
 import { useState } from "react";
@@ -95,7 +95,10 @@ export const useHandleGameSession = () => {
         return chosenPlayers;
       }
       case "resetPlayers": {
-        return;
+        const resetPlayerState = state.filter(
+          (player) => player.id !== action.playerId
+        );
+        return resetPlayerState;
       }
 
       default:
