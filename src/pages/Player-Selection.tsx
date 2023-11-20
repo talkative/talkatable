@@ -59,16 +59,16 @@ export const ChosenPlayers = ({
     <>
       {hasChosenPlayers ? (
         <>
-          <div className="flex mt-48 w-full">
+          <div className="flex mt-48 w-full justify-center">
             {players.map((player) => {
               return (
                 <div
                   key={player.name}
-                  className="flex items-center justify-center text-center flex-col text-white "
+                  className="flex items-center justify-center text-center flex-col text-white"
                 >
                   <img
                     className="rounded-full p-6"
-                    style={{ width: "190px", height: "190px" }}
+                    style={{ width: "45vw", height: "45vw" }}
                     src={playerImgs.find((img) => img.id === player.name)?.src}
                   />
                   <div className="flex text-2xl font-semibold">
@@ -92,11 +92,11 @@ export const ChosenPlayers = ({
           <div className="flex items-center justify-center text-center flex-col">
             <div className="flex">
               <div className="flex items-center justify-center space-x-6 mx-4">
-                <div className="bg-gray-200 rounded-full h-32 w-32 flex text-center items-center justify-center text-4xl">
+                <div className="bg-gray-200 rounded-full h-28 md:h-44 w-28  md:w-44 flex text-center items-center justify-center text-4xl">
                   ?
                 </div>
-                <div className="font-abc text-4xl">VS</div>
-                <div className="bg-gray-200 rounded-full h-32 w-32 text-center flex items-center justify-center text-4xl">
+                <div className="font-abc text-4xl ">VS</div>
+                <div className="bg-gray-200 rounded-full h-28 md:h-44 w-28  md:w-44 flex text-center items-center justify-center text-4xl">
                   ?
                 </div>
               </div>
