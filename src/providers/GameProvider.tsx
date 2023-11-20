@@ -1,4 +1,3 @@
-import Game from "pages/Game";
 import { useContext, createContext, DispatchWithoutAction } from "react";
 
 export interface GameContextType {
