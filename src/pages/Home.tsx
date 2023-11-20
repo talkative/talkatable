@@ -15,11 +15,11 @@ const Home = () => {
 
   return (
     <div className="w-screen h-screen bg-background-color flex">
-      <div className="flex flex-col items-center justify-center h-2/3">
+      <div className="absolute top-28 left-0 right-0 z-10 flex justify-center items-center p-4">
         <img
           src="./public/Talkative-logo.png"
           alt="Talkative.logo"
-          className="w-3/5 mx-auto"
+          className="w-2/3"
         />
       </div>
       <div className="p-4 absolute inset-x-0 bottom-6">

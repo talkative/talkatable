@@ -1,10 +1,12 @@
 import React, { useState, useReducer, useMemo } from "react";
 import Button from "@components/atoms/Button";
-import { useNavigate } from "react-router";
 import Playerinfo, { playerInfo } from "@components/molecules/Playerinfo";
+import { useNavigate } from "react-router";
 import { useGameContext } from "providers/GameProvider";
 import scoreEvaluation from "@utils/scoreEvaluation";
 import { BackButton } from "@components/atoms/BackButton";
+import ConfettiExplosion from "react-confetti-explosion";
+import { Audio } from "react-loader-spinner";
 
 interface Game {
   id: string;
@@ -14,6 +16,15 @@ const Game = () => {
   const navigate = useNavigate();
   const [gameFinished, setGameFinished] = useState<boolean>(false);
   const { state: gameSession, handleGameSession } = useGameContext();
+  const [uiProps, setUiProps] = useState({
+    isExploding: false,
+  });
+
+  const handleConfetti = () => {
+    setUiProps({
+      isExploding: true,
+    });
+  };
   const resetPlayerPoints = () => {
     gameSession[0].points = 0;
     gameSession[1].points = 0;
@@ -33,6 +44,7 @@ const Game = () => {
   function handleFinishedGame() {
     setGameFinished(true);
     scoreEvaluation(gameSession[0], gameSession[1]);
+    handleConfetti();
   }
 
   function handleGoHome() {
@@ -43,10 +55,8 @@ const Game = () => {
 
   function handleGoBack() {
     navigate("/Player-Selection");
-  }
-
-  function handleNewGame() {
-    navigate("/Game");
+    resetPlayerPoints();
+    emptyPlayerArray();
   }
 
   const handleRematch = () => {
@@ -57,14 +67,15 @@ const Game = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-background-color flex flex-col items-center justify-center">
-      <BackButton onClick={handleGoBack} />
+    <div className="w-screen h-screen bg-background-color flex flex-col ">
+      <BackButton onClick={handleGoBack} className="p-4" />
 
-      <div className="flex absolute top-0 pt-8">
+      <div className="flex top-0 pt-4">
         {gameSession?.map((player) => (
           <>
             {gameFinished ? (
               <div key={player.id} className="flex flex-col w-1/2 items-center">
+                {uiProps.isExploding && <ConfettiExplosion />}
                 <Playerinfo player={player} />
                 <div
                   className="flex items-center border-2 justify-center space-x-8 border-white
@@ -108,6 +119,7 @@ const Game = () => {
             )}
           </>
         ))}
+        b
       </div>
       <div>
         {gameSession?.map((player) => (
