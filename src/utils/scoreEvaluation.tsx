@@ -4,7 +4,7 @@ import { calculatePlayerRatings } from "@utils/eloRating";
 import { PlayerInGame } from "@types/Game.types";
 import { getRank } from "./ranks";
 
-//TODO Fixa till koden, gör det mindre och bättre
+//TODO Fixa till koden, gör det mindre verbose
 const scoreEvaluation = (player1: PlayerInGame, player2: PlayerInGame) => {
   const playerOneWins = player1.points > player2.points;
   const playerTwoWins = player1.points < player2.points;
