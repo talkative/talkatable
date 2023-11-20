@@ -12,13 +12,13 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCcm2Rk20ndY8mujgHDU6Orb0IZehjhCuI",
-  authDomain: "talkative-2a81f.firebaseapp.com",
-  projectId: "talkative-2a81f",
-  storageBucket: "talkative-2a81f.appspot.com",
-  messagingSenderId: "558555865408",
-  appId: "1:558555865408:web:eb6669fad9cd3464f99aa5",
-  measurementId: "G-9B52959C5Q",
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 };
 
 // Init firebase app
