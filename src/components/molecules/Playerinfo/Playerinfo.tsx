@@ -11,8 +11,8 @@ export const PlayerInfo = ({
       <div className="flex px-4 object-center pb-4">
         <img
           src={playerImgs.find((img) => img.id === player.name)?.src}
-          className="rounded-full mb-2 mt-12"
-          style={{ width: "175px", height: "175px" }}
+          className="rounded-full mb-2 mt-8"
+          style={{ width: "150px", height: "150px" }}
         />
       </div>
       <div className="flex justify-center mb-4">
