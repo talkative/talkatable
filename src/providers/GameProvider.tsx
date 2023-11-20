@@ -10,7 +10,7 @@ export interface GameContextType {
     wins: number;
     points: number;
     ratio: number;
-  }[];
+  };
 
   //TODO FIXA TYPEN HÄR FÖR FAN :D
 
