@@ -13,7 +13,6 @@ import useHandleGameSession from "@hooks/useGetPlayers/useHandleGameSession";
 
 const App = () => {
   const { gameSession, handleGameSession } = useHandleGameSession();
-
   return (
     <GameProvider
       value={{
