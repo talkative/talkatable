@@ -1,10 +1,5 @@
-import { playerImgs } from "@utils/playerImages";
 import { GameContextType, gameContext } from "providers/GameProvider";
 import { useReducer, Reducer } from "react";
-import { PlayerInfo } from "@components/molecules/Playerinfo";
-import { useState } from "react";
-import { updatePlayerStats } from "@firebase/firebase";
-import clsx from "clsx";
 
 type GameSessionState = GameContextType["state"];
 
