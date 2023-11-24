@@ -13,15 +13,15 @@ const Home = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-background-color flex">
-      <div className="absolute top-28 left-0 right-0 z-10 flex justify-center items-center p-4">
+    <div className="w-screen h-screen bg-background-color flex flex-col sm:h-screen">
+      <div className="flex justify-center items-center h-3/4 overflow-hidden p-4">
         <img
           src="./public/Talkative-logo.png"
-          alt="Talkative.logo"
+          alt="Talkative-logo"
           className="w-2/3"
         />
       </div>
-      <div className="p-4 absolute inset-x-0 bottom-6">
+      <div className="p-4">
         <div className="py-2">
           <Button onClick={handleNewGame} className="font-abc">
             Ny match

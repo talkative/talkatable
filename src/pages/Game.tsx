@@ -64,7 +64,7 @@ const Game = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-background-color flex flex-col ">
+    <div className="w-screen h-screen bg-background-color flex flex-col sm:h-screen">
       <BackButton onClick={handleGoBack} className="p-4" />
 
       <div className="flex top-0 pt-4">

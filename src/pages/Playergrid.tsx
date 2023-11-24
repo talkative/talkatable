@@ -29,7 +29,7 @@ const PlayerGrid = () => {
   };
 
   return (
-    <div className="bg-background-color w-screen h-screen p-4">
+    <div className="bg-background-color w-screen h-screen p-4 sm:h-screen">
       <BackButton onClick={handleGoBack} />
       <div className="box-content w-full overflow-y-scroll h-4/6 py-8">
         <div className="grid grid-cols-3 gap-11 px-4 pt-4 py-4">

@@ -23,7 +23,7 @@ const PlayerSelection = () => {
   }
 
   return (
-    <div className="flex flex-col w-screen h-screen p-4 bg-background-color">
+    <div className="flex flex-col w-screen h-screen p-4 bg-background-color sm:h-screen">
       <BackButton onClick={handleGoBack} />
       <ChosenPlayers players={gameSession} />
       <div className="p-4 absolute inset-x-0 bottom-6">

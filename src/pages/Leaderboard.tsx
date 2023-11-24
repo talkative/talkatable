@@ -47,7 +47,7 @@ const Leaderboard = () => {
   };
 
   return (
-    <div className="bg-background-color w-screen h-screen p-4 relative">
+    <div className="bg-background-color w-screen h-screen p-4 relative sm:h-screen">
       <BackButton onClick={handleGoBack} />
       <div className="flex items-center pt-16">
         <div className="overflow-x overflow-y-scroll w-full px-4">
