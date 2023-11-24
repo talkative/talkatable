@@ -1,11 +1,7 @@
-import { GameContextType } from "providers/GameProvider";
+import { Player } from "providers/GameProvider";
 import { playerImgs } from "@utils/playerImages";
 
-export const PlayerInfo = ({
-  player,
-}: {
-  player: GameContextType["state"];
-}) => {
+export const PlayerInfo = ({ player }: { player: Player }) => {
   return (
     <div>
       <div className="flex px-4 object-center pb-4">

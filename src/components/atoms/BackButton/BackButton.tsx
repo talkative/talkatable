@@ -1,4 +1,3 @@
-import React from "react";
 import { HtmlHTMLAttributes } from "react";
 import cn from "@utils/classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

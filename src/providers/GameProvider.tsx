@@ -1,20 +1,21 @@
-import { useContext, createContext, DispatchWithoutAction } from "react";
+import { useContext, createContext } from "react";
+import { ReducerAction } from "@hooks/useGetPlayers/useHandleGameSession";
 
+export type Player = {
+  id: string;
+  losses: number;
+  name: string;
+  rating: number;
+  wins: number;
+  points: number;
+  ratio: number;
+  rank: string;
+  playerWon: boolean;
+};
 export interface GameContextType {
-  state: {
-    id: string;
-    losses: number;
-    name: string;
-    rank: string;
-    rating: number;
-    wins: number;
-    points: number;
-    ratio: number;
-  };
+  state: Player[];
 
-  //TODO FIXA TYPEN HÄR FÖR FAN :D
-
-  handleGameSession: DispatchWithoutAction;
+  handleGameSession: React.Dispatch<ReducerAction>;
 }
 
 export const gameContext = createContext<GameContextType | null>(null);

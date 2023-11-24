@@ -1,13 +1,17 @@
 import { updatePlayerStats } from "@firebase/firebase";
 
 import { calculatePlayerRatings } from "@utils/eloRating";
-import { PlayerInGame } from "@types/Game.types";
+
+import type { Player } from "providers/GameProvider";
+
 import { getRank } from "./ranks";
 
 //TODO Fixa till koden, gör det mindre verbose
-const scoreEvaluation = (player1: PlayerInGame, player2: PlayerInGame) => {
-  const playerOneWins = player1.points > player2.points;
-  const playerTwoWins = player1.points < player2.points;
+const scoreEvaluation = (player1: Player, player2: Player) => {
+  const playerOneWins =
+    player1.points && player2.points && player1.points > player2.points;
+  const playerTwoWins =
+    player1.points && player2.points && player1.points < player2.points;
   const playerOneRatio =
     player1.losses !== 0 ? player1.wins / player1.losses : player1.wins;
   const playerTwoRatio =
@@ -26,7 +30,7 @@ const scoreEvaluation = (player1: PlayerInGame, player2: PlayerInGame) => {
     const newRankPlayerTwo = getRank(calculatedRating.newRatingTwo);
 
     updatePlayerStats({
-      playerId: player1.id,
+      id: player1.id,
       wins: player1.wins,
       losses: player1.losses,
       rating: calculatedRating.newRatingOne,
@@ -35,7 +39,7 @@ const scoreEvaluation = (player1: PlayerInGame, player2: PlayerInGame) => {
     });
 
     updatePlayerStats({
-      playerId: player2.id,
+      id: player2.id,
       wins: player2.wins,
       losses: player2.losses,
       rating: calculatedRating.newRatingTwo,
@@ -55,7 +59,7 @@ const scoreEvaluation = (player1: PlayerInGame, player2: PlayerInGame) => {
     const newRankPlayerOne = getRank(calculatedRating.newRatingOne);
     const newRankPlayerTwo = getRank(calculatedRating.newRatingTwo);
     updatePlayerStats({
-      playerId: player1.id,
+      id: player1.id,
       wins: player1.wins,
       losses: player1.losses,
       ratio: playerOneRatio,
@@ -64,7 +68,7 @@ const scoreEvaluation = (player1: PlayerInGame, player2: PlayerInGame) => {
     });
 
     updatePlayerStats({
-      playerId: player2.id,
+      id: player2.id,
       wins: player2.wins,
       losses: player2.losses,
       ratio: playerTwoRatio,
@@ -72,7 +76,6 @@ const scoreEvaluation = (player1: PlayerInGame, player2: PlayerInGame) => {
       rank: newRankPlayerTwo,
     });
     return calculatedRating;
-  } else {
   }
 };
 export default scoreEvaluation;

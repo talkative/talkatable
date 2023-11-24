@@ -1,72 +1,89 @@
-import { GameContextType, gameContext } from "providers/GameProvider";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useReducer, Reducer } from "react";
 
-type GameSessionState = GameContextType["state"];
+import type { GameContextType, Player } from "providers/GameProvider";
 
-type GameSessionAction =
-  | {
-      type: "incrementPoints";
-      playerId: string;
-    }
-  | {
-      type: "decrementPoints";
-      playerId: string;
-    }
-  | {
-      type: "resetScore";
-      playerId: string;
-    }
-  | {
-      type: "setPlayers";
-      payload: GameContextType["state"];
-    }
-  | {
-      type: "resetPlayers";
-      playerId: string;
-    };
+export enum ReducerType {
+  INCREMENT_POINTS,
+  DECREMENT_POINTS,
+  RESET_SCORE,
+  SET_PLAYER,
+  RESET_PLAYERS,
+}
 
-// https://react.dev/reference/react/useReducer
+type IncrementAction = {
+  type: ReducerType.INCREMENT_POINTS;
+  payload: Player["id"];
+};
+
+type DecrementAction = {
+  type: ReducerType.DECREMENT_POINTS;
+  payload: Player["id"];
+};
+
+type ResetScoreAction = {
+  type: ReducerType.RESET_SCORE;
+};
+
+type ResetPlayersAction = {
+  type: ReducerType.RESET_PLAYERS;
+};
+
+type SetPlayersAction = {
+  type: ReducerType.SET_PLAYER;
+  payload: Player;
+};
+
+export type ReducerAction =
+  | IncrementAction
+  | DecrementAction
+  | ResetScoreAction
+  | ResetPlayersAction
+  | SetPlayersAction;
 
 export const useHandleGameSession = () => {
-  const gameReducer: Reducer<GameSessionState[], GameSessionAction> = (
-    state = [],
-    action
+  const initialState: GameContextType["state"] = [];
+
+  const gameReducer: Reducer<GameContextType["state"], ReducerAction> = (
+    state: GameContextType["state"],
+    action: ReducerAction
   ) => {
     if (!state) return state;
 
     switch (action.type) {
-      case "incrementPoints": {
+      case ReducerType.INCREMENT_POINTS: {
         const incrementedPlayer = state.map((player) =>
-          player.id === action.playerId
-            ? { ...player, points: player.points + 1 }
+          player.id === action.payload
+            ? { ...player, points: player.points && player.points + 1 }
             : player
         );
-        console.log("incrementedPlayer", incrementedPlayer);
+
         return incrementedPlayer;
       }
-      case "decrementPoints": {
+      case ReducerType.DECREMENT_POINTS: {
         const decrementedPlayer = state.map((player) =>
-          player.id === action.playerId
+          player.id === action.payload
             ? {
                 ...player,
-                points: player.points - 1 < 0 ? 0 : player.points - 1,
+                points:
+                  player.points && player.points - 1 < 0
+                    ? 0
+                    : player.points && player.points - 1,
               }
             : player
         );
 
-        console.log("decrementedPlayer", decrementedPlayer);
-
         return decrementedPlayer;
       }
 
-      case "resetScore": {
+      case ReducerType.RESET_SCORE: {
         const resetPlayer = state.map((player) => ({
           ...player,
           points: 0,
         }));
         return resetPlayer;
       }
-      case "setPlayers": {
+      case ReducerType.SET_PLAYER: {
         const chosenPlayerExistsInSession = state.some(
           (player) => player.name === action.payload.name
         );
@@ -89,11 +106,8 @@ export const useHandleGameSession = () => {
 
         return chosenPlayers;
       }
-      case "resetPlayers": {
-        const resetPlayerState = state.filter(
-          (player) => player.id !== action.playerId
-        );
-        return resetPlayerState;
+      case ReducerType.RESET_PLAYERS: {
+        return initialState;
       }
 
       default:
@@ -101,7 +115,10 @@ export const useHandleGameSession = () => {
     }
   };
 
-  const [gameSession, handleGameSession] = useReducer(gameReducer, []);
+  const [gameSession, handleGameSession] = useReducer(
+    gameReducer,
+    initialState
+  );
 
   return {
     gameSession,

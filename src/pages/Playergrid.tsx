@@ -1,11 +1,12 @@
-import React from "react";
 import Button from "@components/atoms/Button";
 import { useNavigate } from "react-router";
 import useGetPlayers from "@hooks/useGetPlayers";
 import { playerImgs } from "@utils/playerImages";
-import { useGameContext } from "providers/GameProvider";
+import { Player, useGameContext } from "providers/GameProvider";
 import classNames from "classnames";
 import BackButton from "@components/atoms/BackButton";
+
+import { ReducerType } from "@hooks/useGetPlayers/useHandleGameSession";
 
 const PlayerGrid = () => {
   const players = useGetPlayers();
@@ -20,9 +21,9 @@ const PlayerGrid = () => {
     navigate("/Player-Selection");
   };
 
-  const handlePlayerSelection = (player) => {
+  const handlePlayerSelection = (player: Player) => {
     handleGameSession({
-      type: "setPlayers",
+      type: ReducerType.SET_PLAYER,
       payload: player,
     });
   };
@@ -32,7 +33,7 @@ const PlayerGrid = () => {
       <BackButton onClick={handleGoBack} />
       <div className="box-content w-full overflow-y-scroll h-4/6 py-8">
         <div className="grid grid-cols-3 gap-11 px-4 pt-4 py-4">
-          {players.map((player) => (
+          {players?.map((player) => (
             <div
               className="flex flex-col text-center"
               key={player.name}

@@ -6,7 +6,7 @@ import BackButton from "@components/atoms/BackButton";
 
 const PlayerSelection = () => {
   const navigate = useNavigate();
-  const { state: gameSession, handleGameSession } = useGameContext();
+  const { state: gameSession } = useGameContext();
 
   function handleStartGame() {
     navigate("/Game");

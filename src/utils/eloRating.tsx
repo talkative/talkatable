@@ -1,10 +1,9 @@
-import type { GameContextType } from "providers/GameProvider";
 import EloRank from "elo-rank";
+import { Player } from "providers/GameProvider";
 
-type Player = GameContextType["state"];
 const elo = new EloRank(15);
 
-export function calculatePlayerRatings(players: Player) {
+export function calculatePlayerRatings(players: Player[]) {
   const [playerOne, playerTwo] = players;
 
   const expectedPlayerOneScore = elo.getExpected(
@@ -21,13 +20,13 @@ export function calculatePlayerRatings(players: Player) {
 
   const newRatingOne = elo.updateRating(
     expectedPlayerOneScore,
-    playerOne.points,
+    playerOne.points ?? 0,
     playerOne.rating
   );
 
   const newRatingTwo = elo.updateRating(
     expectedPlayerTwoScore,
-    playerTwo.points,
+    playerTwo.points ?? 0,
     playerTwo.rating
   );
 

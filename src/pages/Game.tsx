@@ -1,12 +1,12 @@
-import React, { useState, useReducer, useMemo } from "react";
+import { useState } from "react";
 import Button from "@components/atoms/Button";
-import Playerinfo, { playerInfo } from "@components/molecules/Playerinfo";
+import Playerinfo from "@components/molecules/Playerinfo";
 import { useNavigate } from "react-router";
 import { useGameContext } from "providers/GameProvider";
 import scoreEvaluation from "@utils/scoreEvaluation";
 import { BackButton } from "@components/atoms/BackButton";
 import ConfettiExplosion from "react-confetti-explosion";
-import { Audio } from "react-loader-spinner";
+import { ReducerType } from "@hooks/useGetPlayers/useHandleGameSession";
 
 interface Game {
   id: string;
@@ -31,11 +31,8 @@ const Game = () => {
   };
 
   const emptyPlayerArray = () => {
-    gameSession.forEach((player) => {
-      handleGameSession({
-        type: "resetPlayers",
-        playerId: player.id,
-      });
+    handleGameSession({
+      type: ReducerType.RESET_PLAYERS,
     });
   };
   const isButtonDisabled =
@@ -95,8 +92,8 @@ const Game = () => {
                     className="text-4xl"
                     onClick={() =>
                       handleGameSession({
-                        type: "decrementPoints",
-                        playerId: player.id,
+                        type: ReducerType.DECREMENT_POINTS,
+                        payload: player.id,
                       })
                     }
                   >
@@ -107,8 +104,8 @@ const Game = () => {
                     className="text-4xl"
                     onClick={() =>
                       handleGameSession({
-                        type: "incrementPoints",
-                        playerId: player.id,
+                        type: ReducerType.INCREMENT_POINTS,
+                        payload: player.id,
                       })
                     }
                   >

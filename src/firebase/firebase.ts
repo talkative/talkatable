@@ -10,6 +10,7 @@ import {
   // deleteDoc,
   // onSnapshot,
 } from "firebase/firestore";
+import { Player } from "providers/GameProvider";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -27,21 +28,20 @@ const app = initializeApp(firebaseConfig);
 // init service
 const db = getFirestore(app);
 
+type UpdatePlayer = Pick<
+  Player,
+  "id" | "wins" | "losses" | "rating" | "ratio" | "rank"
+>;
+
 const updatePlayerStats = ({
-  playerId,
+  id,
   wins,
   losses,
   rating,
   ratio,
   rank,
-}: {
-  playerId: string;
-  wins: number;
-  losses: number;
-  rating: number;
-  ratio: number;
-  rank: string;
-}) => {
+}: UpdatePlayer) => {
+  const playerId = id;
   const playerRef = doc(db, "profiles", playerId);
 
   updateDoc(playerRef, {

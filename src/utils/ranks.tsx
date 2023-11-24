@@ -15,5 +15,5 @@ export const getRank = (rating: number) => {
     return rating >= rank.pointsBracket[0] && rating <= rank.pointsBracket[1];
   });
 
-  return foundRank?.name;
+  return foundRank?.name || "Unkown rank";
 };

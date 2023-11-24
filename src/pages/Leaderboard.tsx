@@ -5,8 +5,7 @@ import Button from "@components/atoms/Button";
 
 import useGetPlayers from "@hooks/useGetPlayers";
 
-import type { Player } from "@types/Game.types";
-
+import type { Player } from "providers/GameProvider";
 import BackButton from "@components/atoms/BackButton";
 
 //* Firebase till tabell
@@ -35,6 +34,7 @@ const Leaderboard = () => {
 
   //* Vad gör keyofPlayer mer exakt??
   const sortBy = (key: keyof Player) => {
+    if (!key || !initialPlayers) return;
     const sortedPlayers = [...initialPlayers];
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
       sortedPlayers.sort((a, b) => (a[key] > b[key] ? 1 : -1));
