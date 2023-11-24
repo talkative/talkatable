@@ -116,7 +116,6 @@ const Game = () => {
             )}
           </>
         ))}
-        b
       </div>
       <div>
         {gameSession?.map((player) => (

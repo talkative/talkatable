@@ -48,15 +48,17 @@ export const useHandleGameSession = () => {
     state: GameContextType["state"],
     action: ReducerAction
   ) => {
+    console.log("state", state);
     if (!state) return state;
 
     switch (action.type) {
       case ReducerType.INCREMENT_POINTS: {
         const incrementedPlayer = state.map((player) =>
           player.id === action.payload
-            ? { ...player, points: player.points && player.points + 1 }
+            ? { ...player, points: (player.points || 0) + 1 }
             : player
         );
+        console.log("increment");
 
         return incrementedPlayer;
       }
