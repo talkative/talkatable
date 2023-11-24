@@ -20,8 +20,6 @@ const Leaderboard = () => {
     direction: "",
   });
 
-  // TODO ändra till GameContext/Gamesession
-
   useEffect(() => {
     if (initialPlayers.length > 0) {
       setPlayers(initialPlayers);
@@ -32,7 +30,6 @@ const Leaderboard = () => {
     navigate("/Home");
   };
 
-  //* Vad gör keyofPlayer mer exakt??
   const sortBy = (key: keyof Player) => {
     if (!key || !initialPlayers) return;
     const sortedPlayers = [...initialPlayers];

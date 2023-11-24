@@ -25,6 +25,7 @@ const Game = () => {
       isExploding: true,
     });
   };
+
   const resetPlayerPoints = () => {
     gameSession[0].points = 0;
     gameSession[1].points = 0;
@@ -64,7 +65,7 @@ const Game = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-background-color flex flex-col sm:h-screen">
+    <div className="w-screen h-screen bg-background-color flex flex-col ">
       <BackButton onClick={handleGoBack} className="p-4" />
 
       <div className="flex top-0 pt-4">
@@ -117,7 +118,7 @@ const Game = () => {
           </>
         ))}
       </div>
-      <div>
+      <div className="flex-shrink-0">
         {gameSession?.map((player) => (
           <div key={player.id}>
             {gameFinished ? (

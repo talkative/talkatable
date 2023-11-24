@@ -10,7 +10,7 @@ export const Button = ({ className, children, ...props }: Button) => {
   return (
     <button
       className={cn(
-        "w-full p-4 text-white bg-button-color rounded-lg shadow-xl",
+        "w-full p-4 text-white bg-button-color rounded-lg shadow-xl mt-auto",
         className
       )}
       {...props}

@@ -6,17 +6,14 @@ import type { Player } from "providers/GameProvider";
 
 import { getRank } from "./ranks";
 
-//TODO Fixa till koden, gör det mindre verbose
 const scoreEvaluation = (player1: Player, player2: Player) => {
-  const playerOneWins =
-    player1.points && player2.points && player1.points > player2.points;
-  const playerTwoWins =
-    player1.points && player2.points && player1.points < player2.points;
+  const playerOneWins = player1.points > player2.points;
+  const playerTwoWins = player1.points < player2.points;
   const playerOneRatio =
     player1.losses !== 0 ? player1.wins / player1.losses : player1.wins;
   const playerTwoRatio =
     player2.losses !== 0 ? player2.wins / player2.losses : player2.wins;
-
+  console.log(player1, player2);
   if (playerOneWins) {
     player1.wins += 1;
     player2.losses += 1;

@@ -41,9 +41,11 @@ const updatePlayerStats = ({
   ratio,
   rank,
 }: UpdatePlayer) => {
+  console.log("update player stats", id);
   const playerId = id;
   const playerRef = doc(db, "profiles", playerId);
 
+  console.log("rating in UPDATE", rating);
   updateDoc(playerRef, {
     wins,
     losses,
