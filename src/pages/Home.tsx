@@ -18,12 +18,16 @@ const Home = () => {
         <img
           src="./public/Talkative-logo.png"
           alt="Talkative-logo"
-          className="w-2/3"
+          className="w-2/3 animate-spin-slow"
         />
       </div>
       <div className="p-4">
         <div className="py-2">
-          <Button onClick={handleNewGame} className="font-abc">
+          <Button
+            onClick={handleNewGame}
+            type="primary"
+            className="font-abc bg-none"
+          >
             Ny match
           </Button>
         </div>

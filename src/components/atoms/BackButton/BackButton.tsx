@@ -13,13 +13,12 @@ export const BackButton = ({ onClick, ...props }: BackButton) => {
       <button
         onClick={onClick}
         className={cn(
-          "rounded-full bg-button-color text-white w-20 h-20 top-4 left-4 shadow-xl"
+          "rounded-full bg-button-color text-white w-12 h-12 shadow-xl"
         )}
       >
         <FontAwesomeIcon
           icon={faArrowRight}
           rotation={180}
-          size="2xl"
           style={{ color: "#FFFF" }}
         />
       </button>

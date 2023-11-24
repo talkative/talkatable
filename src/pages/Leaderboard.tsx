@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
-import Button from "@components/atoms/Button";
-
 import useGetPlayers from "@hooks/useGetPlayers";
 
 import type { Player } from "providers/GameProvider";
@@ -44,59 +42,58 @@ const Leaderboard = () => {
   };
 
   return (
-    <div className="bg-background-color w-screen h-screen p-4 relative sm:h-screen">
+    <div className="bg-background-color w-screen h-screen p-4 relative sm:h-screen overflow-y-scroll">
       <BackButton onClick={handleGoBack} />
-      <div className="flex items-center pt-16">
-        <div className="overflow-x overflow-y-scroll w-full px-4">
-          <table className="table-auto bg-pink-300 border-collapse w-full h-full min-w-full divide-y divide-gray-500">
-            <thead className="bg-table-header-color border-b-2 border-gray-200 text-white sticky top-0">
+      <div className="flex items-center pt-12">
+        <div className="overflow-x overflow-y-scroll w-full px-2">
+          <table className="table-auto border-collapse w-full h-full min-w-full  divide-gray-500">
+            <thead className="border-gray-200 text-white sticky top-0 text-xl">
               <tr>
                 <th
-                  className="p-1 text-sm font-bold tracking-wide text-left"
+                  className="p-1 font-bold tracking-wide text-left pb-4 "
                   onClick={() => sortBy("name")}
                 >
                   Namn
                 </th>
                 <th
-                  className="p-1 text-sm font-semibold tracking-wide text-center"
+                  className="p-1 font-semibold tracking-wide text-center  pb-4"
                   onClick={() => sortBy("ratio")}
                 >
                   V/F
                 </th>
                 <th
-                  className="p-1 text-sm font-semibold tracking-wide text-cecenter"
+                  className="p-1  font-semibold tracking-wide text-center pb-4"
                   onClick={() => sortBy("rank")}
                 >
                   Rank
                 </th>
                 <th
-                  className="p-1 text-sm font-semibold tracking-wide text-center"
+                  className="p-1  font-semibold tracking-wide text-center  pb-4"
                   onClick={() => sortBy("rating")}
                 >
                   Rating
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="">
               {players.map((item) => (
                 <tr
                   key={item.id}
-                  className="odd:bg-table-light-color even:bg-table-dark-color"
+                  className="border-t border-b text-white text-xl"
                 >
-                  <td className="text-left">{item.name}</td>
-                  <td className="text-center">{item.ratio.toFixed(1)}</td>
-                  <td className="text-center">{item.rank}</td>
-                  <td className="text-center">{item.rating}</td>
+                  <td className="text-left font-bold text-blue-400 py-5 truncate">
+                    {item.name}
+                  </td>
+                  <td className="text-center py-5">{item.ratio.toFixed(1)}</td>
+                  <td className="text-center py-5">{item.rank}</td>
+                  <td className="text-center py-5">{item.rating}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+
+          <div className="w-full h-[12px] py-12 bg-red"></div>
         </div>
-      </div>
-      <div className="p-4 absolute inset-x-0 bottom-6">
-        <Button onClick={handleGoBack} className="font-abc">
-          Tillbaka
-        </Button>
       </div>
     </div>
   );

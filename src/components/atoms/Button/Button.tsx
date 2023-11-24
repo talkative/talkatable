@@ -4,18 +4,22 @@ import cn from "@utils/classnames";
 
 interface Button extends HtmlHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
+  type: "primary" | "secondary" | "tertiary";
 }
 
-export const Button = ({ className, children, ...props }: Button) => {
+export const Button = ({ className, children, type, ...props }: Button) => {
   return (
     <button
       className={cn(
-        "w-full p-4 text-white bg-button-color rounded-lg shadow-xl mt-auto",
-        className
+        "w-full p-4 text-white border rounded-lg mt-auto",
+        className,
+        {
+          "bg-button-color border-none": type === "primary",
+        }
       )}
       {...props}
     >
-      <span className="text-3xl font-bold font-abc">{children}</span>
+      <span className="text-2xl">{children}</span>
     </button>
   );
 };
