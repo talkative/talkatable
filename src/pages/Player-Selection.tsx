@@ -36,7 +36,9 @@ const PlayerSelection = () => {
           <Button
             onClick={handleStartGame}
             className={`font-abc ${
-              hasChosenPlayers ? "bg-button-color border-none" : "bg-none"
+              hasChosenPlayers
+                ? "bg-button-color border-none"
+                : "bg-button-color opacity-50"
             }`}
             disabled={!hasChosenPlayers}
           >
