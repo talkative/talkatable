@@ -38,7 +38,7 @@ const PlayerSelection = () => {
             className={`font-abc ${
               hasChosenPlayers
                 ? "bg-button-color border-none"
-                : "bg-button-color opacity-50"
+                : "bg-button-color opacity-50 border-none"
             }`}
             disabled={!hasChosenPlayers}
           >
