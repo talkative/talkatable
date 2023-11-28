@@ -63,4 +63,5 @@ export const playerImgs = [
     id: "Maria",
     src: "Avatar.png",
   },
+  { id: "Talkative-logo", src: "Talkative-logo.png" },
 ];
