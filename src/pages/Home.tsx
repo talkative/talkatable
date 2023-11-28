@@ -16,8 +16,8 @@ const Home = () => {
     <div className="w-screen h-screen bg-background-color flex flex-col sm:h-screen">
       <div className="flex justify-center items-center h-3/4 overflow-hidden p-4">
         <img
-          src="src/utils/playerImages.tsx"
-          alt="Talkative-logo"
+          src="public/Talkative-logo.png"
+          alt="Talkative-logo.png"
           className="w-2/3 animate-spin-slow "
         />
       </div>
