@@ -46,13 +46,13 @@ const PlayerGrid = () => {
                   "border-blue-500 border-2 ": player.name === playerTwo?.name,
                 })}
               />
-              <span className="py-1">{player.name}</span>
+              <span className="py-1 text-white font-bold">{player.name}</span>
             </div>
           ))}
         </div>
       </div>
-      <div className="p-4 absolute inset-x-0 bottom-6">
-        <Button onClick={handleGoBack}>Confirm(??)</Button>
+      <div className="p-4 absolute font-abc inset-x-0 bottom-6">
+        <Button onClick={handleGoBack}>Confirm</Button>
       </div>
     </div>
   );

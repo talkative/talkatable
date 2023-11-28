@@ -35,7 +35,9 @@ const PlayerSelection = () => {
         <div className="py-2">
           <Button
             onClick={handleStartGame}
-            className="font-abc"
+            className={`font-abc ${
+              hasChosenPlayers ? "bg-button-color border-none" : "bg-none"
+            }`}
             disabled={!hasChosenPlayers}
           >
             Starta match
@@ -59,12 +61,12 @@ export const ChosenPlayers = ({
     <>
       {hasChosenPlayers ? (
         <>
-          <div className="flex mt-48 w-full justify-center">
+          <div className="flex mt-24 w-full justify-center ">
             {players.map((player) => {
               return (
                 <div
                   key={player.name}
-                  className="flex items-center justify-center text-center flex-col text-white"
+                  className="flex flex-grow items-center justify-center text-center flex-col text-white"
                 >
                   <img
                     className="rounded-full p-6"
@@ -95,7 +97,7 @@ export const ChosenPlayers = ({
                 <div className="bg-gray-200 rounded-full h-28 md:h-44 w-28  md:w-44 flex text-center items-center justify-center text-4xl">
                   ?
                 </div>
-                <div className="font-abc text-4xl ">VS</div>
+                <div className="font-abc text-white text-4xl ">VS</div>
                 <div className="bg-gray-200 rounded-full h-28 md:h-44 w-28  md:w-44 flex text-center items-center justify-center text-4xl">
                   ?
                 </div>

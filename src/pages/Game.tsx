@@ -65,30 +65,31 @@ const Game = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-background-color flex flex-col ">
+    <div className="w-screen h-screen bg-background-color flex flex-col relative">
       <BackButton onClick={handleGoBack} className="p-4" />
 
       <div className="flex top-0 pt-4">
         {gameSession?.map((player) => (
-          <>
-            {gameFinished ? (
-              <div key={player.id} className="flex flex-col w-1/2 items-center">
-                {uiProps.isExploding && <ConfettiExplosion />}
-                <Playerinfo player={player} />
-                <div
-                  className="flex items-center border-2 justify-center space-x-8 border-white
-              bg-green-900 aspect-[1/1] text-white w-full h-3/5"
-                >
-                  <h1 className="text-8xl items-center">{player.points}</h1>
-                </div>
-              </div>
-            ) : (
-              <div key={player.id} className="flex flex-col w-1/2 items-center">
-                <Playerinfo player={player} />
-                <div
-                  className="flex items-center border-2 justify-center space-x-8 border-white
-              bg-green-900 aspect-[1/1] text-white w-full h-3/5"
-                >
+          <div
+            key={player.id}
+            className={`flex flex-col w-1/2 items-center text-white ${
+              gameFinished ? "" : ""
+            }`}
+          >
+            {gameFinished && uiProps.isExploding && <ConfettiExplosion />}
+
+            <Playerinfo player={player} />
+
+            <div
+              className={`flex items-center border-2 justify-center space-x-8 border-white
+              bg-green-900 aspect-[1/1] text-white w-full ${
+                gameFinished ? "" : "h-3/5"
+              }`}
+            >
+              {gameFinished ? (
+                <h1 className="text-8xl items-center">{player.points}</h1>
+              ) : (
+                <>
                   <button
                     className="text-4xl"
                     onClick={() =>
@@ -112,44 +113,39 @@ const Game = () => {
                   >
                     +
                   </button>
-                </div>
-              </div>
-            )}
-          </>
-        ))}
-      </div>
-      <div className="flex-shrink-0">
-        {gameSession?.map((player) => (
-          <div key={player.id}>
-            {gameFinished ? (
-              <div className="absolute inset-x-0 p-4 bottom-6">
-                <div className="p-2">
-                  <Button className="font-abc" onClick={handleRematch}>
-                    Rematch
-                  </Button>
-                </div>
-                <div className="p-2">
-                  <Button className="font-abc" onClick={handleGoHome}>
-                    Hem
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <div className="absolute inset-x-0 p-4 bottom-6">
-                <div className="pt-2">
-                  <Button
-                    className="font-abc"
-                    onClick={handleFinishedGame}
-                    disabled={isButtonDisabled}
-                  >
-                    Slutför spel
-                  </Button>
-                </div>
-              </div>
-            )}
+                </>
+              )}
+            </div>
           </div>
         ))}
       </div>
+
+      {gameFinished ? (
+        <div className="absolute inset-x-0 p-4 bottom-6 flex space-x-4">
+          <div className="p-2 flex-grow">
+            <Button className="font-abc w-full" onClick={handleRematch}>
+              Rematch
+            </Button>
+          </div>
+          <div className="p-2 flex-grow">
+            <Button className="font-abc w-full" onClick={handleGoHome}>
+              Hem
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div className="absolute inset-x-0 p-4 bottom-6">
+          <div className="pt-2">
+            <Button
+              className="font-abc"
+              onClick={handleFinishedGame}
+              disabled={isButtonDisabled}
+            >
+              Slutför spel
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

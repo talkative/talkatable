@@ -22,7 +22,7 @@ const Leaderboard = () => {
     if (initialPlayers.length > 0) {
       setPlayers(initialPlayers);
     }
-  }, [initialPlayers]); //* Läs på om useEffect
+  }, [initialPlayers]);
 
   const handleGoBack = () => {
     navigate("/Home");
@@ -45,8 +45,8 @@ const Leaderboard = () => {
     <div className="bg-background-color w-screen h-screen p-4 relative sm:h-screen overflow-y-scroll">
       <BackButton onClick={handleGoBack} />
       <div className="flex items-center pt-12">
-        <div className="overflow-x overflow-y-scroll w-full px-2">
-          <table className="table-auto border-collapse w-full h-full min-w-full  divide-gray-500">
+        <div className="overflow-y-scroll w-full h-[calc(100vh-200px)]">
+          <table className="table-auto border-collapse w-full h-full min-w-full divide-gray-500 ">
             <thead className="border-gray-200 text-white sticky top-0 text-xl">
               <tr>
                 <th

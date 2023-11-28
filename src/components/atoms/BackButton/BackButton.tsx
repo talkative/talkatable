@@ -13,7 +13,7 @@ export const BackButton = ({ onClick, ...props }: BackButton) => {
       <button
         onClick={onClick}
         className={cn(
-          "rounded-full bg-button-color text-white w-12 h-12 shadow-xl"
+          "rounded-full border-white border text-white w-12 h-12 shadow-xl"
         )}
       >
         <FontAwesomeIcon

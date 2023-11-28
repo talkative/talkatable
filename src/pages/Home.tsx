@@ -18,7 +18,7 @@ const Home = () => {
         <img
           src="./public/Talkative-logo.png"
           alt="Talkative-logo"
-          className="w-2/3 animate-spin-slow"
+          className="w-2/3 animate-spin-slow "
         />
       </div>
       <div className="p-4">
@@ -35,9 +35,6 @@ const Home = () => {
           <Button onClick={handleLeaderBoard} className="font-abc">
             Tabell
           </Button>
-        </div>
-        <div className="py-2">
-          <Button className="font-abc">Spelare</Button>
         </div>
       </div>
     </div>
