@@ -1,6 +1,5 @@
 import Button from "@components/atoms/Button";
 import { useNavigate } from "react-router";
-import { playerImgs } from "@utils/playerImages";
 
 const Home = () => {
   const navigate = useNavigate();
