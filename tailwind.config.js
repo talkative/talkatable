@@ -29,7 +29,7 @@ export default {
   plugins: [
     function ({ addUtilities, variants }) {
       const animations = {
-        ".animate-spin-fast": {
+        ".animate-spin-slow": {
           animation: "spin 5s linear infinite",
         },
       };
