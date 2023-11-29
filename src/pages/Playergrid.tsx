@@ -51,8 +51,16 @@ const PlayerGrid = () => {
           ))}
         </div>
       </div>
-      <div className="p-4 absolute font-abc inset-x-0 bottom-6">
-        <Button onClick={handleGoBack}>Confirm</Button>
+      <div className={"p-4 absolute font-abc inset-x-0 bottom-6"}>
+        <Button
+          className={`${
+            gameSession.length > 1 ? "bg-button-color border-none" : ""
+          }`}
+          onClick={handleGoBack}
+          disabled={gameSession.length < 2}
+        >
+          Välj
+        </Button>
       </div>
     </div>
   );
