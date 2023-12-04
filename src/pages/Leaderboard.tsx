@@ -21,6 +21,8 @@ const Leaderboard = () => {
   useEffect(() => {
     if (initialPlayers.length > 0) {
       setPlayers(initialPlayers);
+
+      sortBy("rating");
     }
   }, [initialPlayers]);
 
