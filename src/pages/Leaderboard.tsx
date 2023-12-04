@@ -26,9 +26,9 @@ const Leaderboard = () => {
     }
   }, [initialPlayers]);
 
-  const handleGoBack = () => {
-    navigate("/Home");
-  };
+  // const handleGoBack = () => {
+  //   navigate("/Home");
+  // };
 
   const sortBy = (key: keyof Player) => {
     if (!key || !initialPlayers) return;
@@ -45,9 +45,7 @@ const Leaderboard = () => {
 
   return (
     <div className="bg-background-color w-screen h-screen px-4 sm:h-screen overflow-auto">
-      <div className="mt-8">
-        <BackButton onClick={handleGoBack} />
-      </div>
+      <BackButton onClick={() => navigate(-1)} className="py-4" />
 
       <table className="mt-12  rounded-md table-auto w-full h-full min-w-full divide-gray-500 ">
         <thead className=" text-white text-xl w-full">

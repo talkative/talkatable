@@ -24,26 +24,28 @@ const PlayerSelection = () => {
 
   return (
     <div className="flex flex-col w-screen h-screen p-4 bg-background-color sm:h-screen">
-      <BackButton onClick={handleGoBack} />
+      <BackButton onClick={() => navigate(-1)} />
       <ChosenPlayers players={gameSession} />
-      <div className="p-4 absolute inset-x-0 bottom-6">
-        <div className="py-2">
-          <Button onClick={handleChoosePlayer} className="font-abc">
-            Välj spelare
-          </Button>
-        </div>
-        <div className="py-2">
-          <Button
-            onClick={handleStartGame}
-            className={`font-abc ${
-              hasChosenPlayers
-                ? "bg-button-color border-none"
-                : "bg-button-color opacity-50 border-none"
-            }`}
-            disabled={!hasChosenPlayers}
-          >
-            Starta match
-          </Button>
+      <div className="p-4">
+        <div className="px-4 absolute inset-x-0 bottom-6">
+          <div className="py-2">
+            <Button onClick={handleChoosePlayer} className="font-abc">
+              Välj spelare
+            </Button>
+          </div>
+          <div className="py-2">
+            <Button
+              onClick={handleStartGame}
+              className={`font-abc ${
+                hasChosenPlayers
+                  ? "bg-button-color border-none"
+                  : "bg-button-color opacity-50 border-none"
+              }`}
+              disabled={!hasChosenPlayers}
+            >
+              Starta match
+            </Button>
+          </div>
         </div>
       </div>
     </div>

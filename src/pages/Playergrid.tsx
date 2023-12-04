@@ -19,9 +19,12 @@ const PlayerGrid = () => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-    navigate("/Player-Selection");
+    navigate(-1);
   };
 
+  const handlePlayer = () => {
+    navigate("/Player-Selection");
+  };
   const handlePlayerSelection = (player: Player) => {
     handleGameSession({
       type: ReducerType.SET_PLAYER,
@@ -32,7 +35,7 @@ const PlayerGrid = () => {
   return (
     <div className="bg-background-color w-screen h-screen p-4 sm:h-screen">
       <div className="flex items-center justify-between relative mb-4">
-        <BackButton onClick={handleGoBack} />
+        <BackButton onClick={() => navigate(-1)} />
         <div className="flex justify-center text-white text-xl absolute left-0 right-0 font-abc">
           {amountOfPlayers === 1
             ? `${amountOfPlayers} av 2 vald`
@@ -50,8 +53,8 @@ const PlayerGrid = () => {
               <img
                 src={playerImgs.find((img) => img.id === player.name)?.src}
                 className={classNames("object-cover rounded-full", {
-                  "border-green-500 border-2 ": player.name === playerOne?.name,
-                  "border-blue-500 border-2 ": player.name === playerTwo?.name,
+                  "border-green-500 border-4": player.name === playerOne?.name,
+                  "border-red-500 border-4": player.name === playerTwo?.name,
                 })}
               />
               <span className="py-1 text-white font-bold">{player.name}</span>
@@ -59,14 +62,15 @@ const PlayerGrid = () => {
           ))}
         </div>
       </div>
-      <div className={"p-4 absolute border-none font-abc inset-x-0 bottom-6"}>
+
+      <div className="px-4 absolute border-none font-abc inset-x-0 bottom-6">
         <Button
           className={`${
             amountOfPlayers > 1
               ? "bg-button-color border-none"
               : "bg-button-color opacity-40 border-none"
           }`}
-          onClick={handleGoBack}
+          onClick={handlePlayer}
           disabled={amountOfPlayers < 2}
         >
           Välj spelare

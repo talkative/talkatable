@@ -51,11 +51,11 @@ const Game = () => {
     navigate("/Home");
   }
 
-  function handleGoBack() {
-    navigate("/Player-Selection");
-    resetPlayerPoints();
-    emptyPlayerArray();
-  }
+  // function handleGoBack() {
+  //   navigate(-1);
+  //   resetPlayerPoints();
+  //   emptyPlayerArray();
+  // }
 
   const handleRematch = () => {
     setGameFinished(true);
@@ -66,7 +66,7 @@ const Game = () => {
 
   return (
     <div className="w-screen h-screen bg-background-color flex flex-col relative">
-      <BackButton onClick={handleGoBack} className="p-4" />
+      <BackButton onClick={() => navigate(-1)} className="p-4" />
 
       <div className="flex top-0 pt-4">
         {gameSession?.map((player) => (
@@ -81,17 +81,17 @@ const Game = () => {
             <Playerinfo player={player} />
 
             <div
-              className={`flex items-center border-2 justify-center space-x-8 border-white
+              className={`relative flex items-center border-2 justify-center space-x-8 border-white
               bg-green-900 aspect-[1/1] text-white w-full ${
                 gameFinished ? "" : "h-3/5"
               }`}
             >
               {gameFinished ? (
-                <h1 className="text-8xl items-center">{player.points}</h1>
+                <h1 className="text-8xl items-center z-10">{player.points}</h1>
               ) : (
                 <>
                   <div
-                    className="flex items-center justify-center w-1/2 h-full cursor-pointer"
+                    className="flex items-center justify-center w-1/2 h-full cursor-pointer z-20"
                     onClick={() =>
                       handleGameSession({
                         type: ReducerType.DECREMENT_POINTS,
@@ -101,9 +101,11 @@ const Game = () => {
                   >
                     <button className="text-4xl">-</button>
                   </div>
-                  <h1 className="text-8xl items-center">{player.points}</h1>
+                  <h1 className="text-8xl items-center z-10">
+                    {player.points}
+                  </h1>
                   <div
-                    className="flex items-center justify-center w-1/2 h-full cursor-pointer"
+                    className="flex items-center justify-center w-1/2 h-full cursor-pointer z-20"
                     onClick={() =>
                       handleGameSession({
                         type: ReducerType.INCREMENT_POINTS,
