@@ -13,6 +13,7 @@ const PlayerGrid = () => {
 
   const { state: gameSession, handleGameSession } = useGameContext();
 
+  const amountOfPlayers = gameSession.length;
   const [playerOne, playerTwo] = gameSession;
 
   const navigate = useNavigate();
@@ -30,7 +31,14 @@ const PlayerGrid = () => {
 
   return (
     <div className="bg-background-color w-screen h-screen p-4 sm:h-screen">
-      <BackButton onClick={handleGoBack} />
+      <div className="flex items-center justify-between relative mb-4">
+        <BackButton onClick={handleGoBack} />
+        <div className="flex justify-center text-white text-xl absolute left-0 right-0 font-abc">
+          {amountOfPlayers === 1
+            ? `${amountOfPlayers} av 2 vald`
+            : ` ${amountOfPlayers} av 2 valda`}
+        </div>
+      </div>
       <div className="box-content w-full overflow-y-scroll h-4/6 py-8">
         <div className="grid grid-cols-3 gap-11 px-4 pt-4 py-4">
           {players?.map((player) => (
@@ -51,15 +59,17 @@ const PlayerGrid = () => {
           ))}
         </div>
       </div>
-      <div className={"p-4 absolute font-abc inset-x-0 bottom-6"}>
+      <div className={"p-4 absolute border-none font-abc inset-x-0 bottom-6"}>
         <Button
           className={`${
-            gameSession.length > 1 ? "bg-button-color border-none" : ""
+            amountOfPlayers > 1
+              ? "bg-button-color border-none"
+              : "bg-button-color opacity-40 border-none"
           }`}
           onClick={handleGoBack}
-          disabled={gameSession.length < 2}
+          disabled={amountOfPlayers < 2}
         >
-          Välj
+          Välj spelare
         </Button>
       </div>
     </div>

@@ -59,6 +59,11 @@ export const ChosenPlayers = ({
 }) => {
   const hasChosenPlayers = players.length > 1;
 
+  const navigate = useNavigate();
+  function handleChoosePlayer() {
+    navigate("/Playergrid");
+  }
+
   return (
     <>
       {hasChosenPlayers ? (
@@ -74,6 +79,7 @@ export const ChosenPlayers = ({
                     className="rounded-full p-6"
                     style={{ width: "45vw", height: "45vw" }}
                     src={playerImgs.find((img) => img.id === player.name)?.src}
+                    onClick={handleChoosePlayer}
                   />
                   <div className="flex text-2xl font-semibold">
                     {player.name}
@@ -96,11 +102,17 @@ export const ChosenPlayers = ({
           <div className="flex items-center justify-center text-center flex-col">
             <div className="flex">
               <div className="flex items-center justify-center space-x-6 mx-4">
-                <div className="bg-gray-200 rounded-full h-28 md:h-44 w-28  md:w-44 flex text-center items-center justify-center text-4xl">
+                <div
+                  className="bg-gray-200 rounded-full h-28 md:h-44 w-28  md:w-44 flex text-center items-center justify-center text-4xl"
+                  onClick={handleChoosePlayer}
+                >
                   ?
                 </div>
                 <div className="font-abc text-white text-4xl ">VS</div>
-                <div className="bg-gray-200 rounded-full h-28 md:h-44 w-28  md:w-44 flex text-center items-center justify-center text-4xl">
+                <div
+                  className="bg-gray-200 rounded-full h-28 md:h-44 w-28  md:w-44 flex text-center items-center justify-center text-4xl"
+                  onClick={handleChoosePlayer}
+                >
                   ?
                 </div>
               </div>

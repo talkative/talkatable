@@ -8,13 +8,13 @@ const Home = () => {
     navigate("/Leaderboard");
   };
 
-  const handleNewGame = () => {
-    navigate("/Player-Selection");
+  const handleChoosePlayer = () => {
+    navigate("/Playergrid");
   };
 
   return (
-    <div className="w-screen h-screen bg-background-color flex flex-col sm:h-screen">
-      <div className="flex justify-center items-center h-3/4 overflow-hidden p-4">
+    <div className="w-screen h-screen bg-background-color flex flex-col">
+      <div className="flex justify-center items-center flex-grow p-4">
         <img
           src="/Talkative-logo.png"
           alt="Talkative-logo"
@@ -24,7 +24,7 @@ const Home = () => {
       <div className="p-4">
         <div className="py-2">
           <Button
-            onClick={handleNewGame}
+            onClick={handleChoosePlayer}
             type="primary"
             className="font-abc bg-none"
           >
