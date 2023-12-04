@@ -90,8 +90,8 @@ const Game = () => {
                 <h1 className="text-8xl items-center">{player.points}</h1>
               ) : (
                 <>
-                  <button
-                    className="text-4xl"
+                  <div
+                    className="flex items-center justify-center w-1/2 h-full cursor-pointer"
                     onClick={() =>
                       handleGameSession({
                         type: ReducerType.DECREMENT_POINTS,
@@ -99,11 +99,11 @@ const Game = () => {
                       })
                     }
                   >
-                    -
-                  </button>
+                    <button className="text-4xl">-</button>
+                  </div>
                   <h1 className="text-8xl items-center">{player.points}</h1>
-                  <button
-                    className="text-4xl"
+                  <div
+                    className="flex items-center justify-center w-1/2 h-full cursor-pointer"
                     onClick={() =>
                       handleGameSession({
                         type: ReducerType.INCREMENT_POINTS,
@@ -111,8 +111,8 @@ const Game = () => {
                       })
                     }
                   >
-                    +
-                  </button>
+                    <button className="text-4xl">+</button>
+                  </div>
                 </>
               )}
             </div>
