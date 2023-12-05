@@ -11,7 +11,7 @@ export const PlayerInfo = ({ player }: { player: Player }) => {
           style={{ width: "150px", height: "150px" }}
         />
       </div>
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center mb-8">
         <div>
           <h3 className="flex items-center justify-center text-center flex-col">
             {player.name}
