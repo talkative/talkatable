@@ -13,30 +13,28 @@ const Home = () => {
   };
 
   return (
-    <div className="absolute inset-0">
-      <div className="w-screen h-screen p-4 bg-background-color flex flex-col">
-        <div className="flex justify-center items-center flex-grow p-4">
-          <img
-            src="/Talkative-logo.png"
-            alt="Talkative-logo"
-            className="w-2/3 animate-spin-slow"
-          />
+    <div className="p-4 flex flex-col h-full">
+      <div className="flex justify-center items-center flex-grow p-4">
+        <img
+          src="/Talkative-logo.png"
+          alt="Talkative-logo"
+          className="w-2/3 animate-spin-slow"
+        />
+      </div>
+      <div className="bottom-6">
+        <div className="py-2 inset-x-0">
+          <Button onClick={handleLeaderBoard} className="font-abc">
+            Tabell
+          </Button>
         </div>
-        <div className="bottom-6">
-          <div className="py-2 inset-x-0">
-            <Button onClick={handleLeaderBoard} className="font-abc">
-              Tabell
-            </Button>
-          </div>
-          <div className="py-2">
-            <Button
-              onClick={handleChoosePlayer}
-              type="primary"
-              className="font-abc bg-none"
-            >
-              Ny match
-            </Button>
-          </div>
+        <div className="py-2">
+          <Button
+            onClick={handleChoosePlayer}
+            type="primary"
+            className="font-abc bg-none"
+          >
+            Ny match
+          </Button>
         </div>
       </div>
     </div>

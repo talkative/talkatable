@@ -18,9 +18,9 @@ const PlayerGrid = () => {
 
   const navigate = useNavigate();
 
-  // const handleGoBack = () => {
-  //   navigate(-1);
-  // };
+  const handleGoHome = () => {
+    navigate("/Home");
+  };
 
   const handlePlayer = () => {
     navigate("/Player-Selection");
@@ -33,9 +33,9 @@ const PlayerGrid = () => {
   };
 
   return (
-    <div className="bg-background-color w-screen h-screen p-4 sm:h-screen">
+    <div className=" w-screen h-full p-4 sm:h-screen">
       <div className="flex items-center justify-between relative mb-4">
-        <BackButton onClick={() => navigate(-1)} />
+        <BackButton onClick={handleGoHome} />
         <div className="flex justify-center text-white text-xl absolute left-0 right-0 font-abc">
           {amountOfPlayers === 1
             ? `${amountOfPlayers} av 2 vald`

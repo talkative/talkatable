@@ -51,12 +51,6 @@ const Game = () => {
     navigate("/Home");
   }
 
-  // function handleGoBack() {
-  //   navigate(-1);
-  //   resetPlayerPoints();
-  //   emptyPlayerArray();
-  // }
-
   const handleRematch = () => {
     setGameFinished(true);
     scoreEvaluation(gameSession[0], gameSession[1]);
@@ -65,8 +59,8 @@ const Game = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-background-color p-4 flex flex-col relative">
-      <BackButton onClick={() => navigate(-1)} className="" />
+    <div className="w-screen h-full flex flex-col relative">
+      <BackButton onClick={() => navigate(-1)} className="p-4" />
 
       <div className="flex top-0 pt-4">
         {gameSession?.map((player) => (
@@ -79,7 +73,7 @@ const Game = () => {
             {gameFinished && uiProps.isExploding && <ConfettiExplosion />}
 
             <Playerinfo player={player} />
-            <div className="py-4"></div>
+
             <div
               className={`relative flex items-center border-2 justify-center space-x-8 border-white
               bg-green-900 aspect-[1/1] text-white w-full ${
@@ -123,21 +117,21 @@ const Game = () => {
       </div>
 
       {gameFinished ? (
-        <div className="fixed px-4 inset-x-0 bottom-6 flex space-x-4">
-          <div className="flex-grow">
+        <div className="fixed inset-x-0 bottom-6 flex px-2 space-x-4">
+          <div className="px-2 flex-grow">
             <Button className="font-abc w-full" onClick={handleRematch}>
               Rematch
             </Button>
           </div>
-          <div className="flex-grow">
+          <div className="px-2 flex-grow">
             <Button className="font-abc w-full" onClick={handleGoHome}>
               Hem
             </Button>
           </div>
         </div>
       ) : (
-        <div className="absolute inset-x-0 bottom-6">
-          <div className="px-4">
+        <div className="absolute inset-x-0 px-4 bottom-6">
+          <div className="pt-2">
             <Button
               className="font-abc"
               onClick={handleFinishedGame}

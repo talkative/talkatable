@@ -3,12 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply bg-background-color;
+}
+
 body {
-  width: 100%;
-  height: 100%;
+  @apply w-screen h-[100svh];
 }
 
 #root {
-  width: 100%;
   height: 100%;
 }
