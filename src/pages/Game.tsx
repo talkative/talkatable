@@ -79,7 +79,7 @@ const Game = () => {
             {gameFinished && uiProps.isExploding && <ConfettiExplosion />}
 
             <Playerinfo player={player} />
-
+            <div className="py-4"></div>
             <div
               className={`relative flex items-center border-2 justify-center space-x-8 border-white
               bg-green-900 aspect-[1/1] text-white w-full ${
@@ -123,7 +123,7 @@ const Game = () => {
       </div>
 
       {gameFinished ? (
-        <div className="absolute px-4 inset-x-0 bottom-6 flex space-x-4">
+        <div className="fixed px-4 inset-x-0 bottom-6 flex space-x-4">
           <div className="flex-grow">
             <Button className="font-abc w-full" onClick={handleRematch}>
               Rematch

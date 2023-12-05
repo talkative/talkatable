@@ -23,7 +23,7 @@ const PlayerSelection = () => {
       <BackButton onClick={() => navigate(-1)} />
       <ChosenPlayers players={gameSession} />
 
-      <div className="px-4 absolute inset-x-0 bottom-6">
+      <div className="px-4 fixed inset-x-0 bottom-6">
         <div className="py-2">
           <Button onClick={handleChoosePlayer} className="font-abc">
             Välj spelare

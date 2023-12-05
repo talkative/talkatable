@@ -42,6 +42,7 @@ const PlayerGrid = () => {
             : ` ${amountOfPlayers} av 2 valda`}
         </div>
       </div>
+
       <div className="box-content w-full overflow-y-scroll h-4/6 py-8">
         <div className="grid grid-cols-3 gap-11 px-4 pt-4 py-4">
           {players?.map((player) => (
@@ -62,8 +63,7 @@ const PlayerGrid = () => {
           ))}
         </div>
       </div>
-
-      <div className="px-4 absolute border-none font-abc inset-x-0 bottom-6">
+      <div className="border-none px-4 fixed font-abc inset-x-0 bottom-6">
         <Button
           className={`${
             amountOfPlayers > 1

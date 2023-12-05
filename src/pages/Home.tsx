@@ -23,6 +23,11 @@ const Home = () => {
           />
         </div>
         <div className="bottom-6">
+          <div className="py-2 inset-x-0">
+            <Button onClick={handleLeaderBoard} className="font-abc">
+              Tabell
+            </Button>
+          </div>
           <div className="py-2">
             <Button
               onClick={handleChoosePlayer}
@@ -30,11 +35,6 @@ const Home = () => {
               className="font-abc bg-none"
             >
               Ny match
-            </Button>
-          </div>
-          <div className="py-2 inset-x-0">
-            <Button onClick={handleLeaderBoard} className="font-abc">
-              Tabell
             </Button>
           </div>
         </div>
