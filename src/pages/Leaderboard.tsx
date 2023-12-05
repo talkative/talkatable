@@ -44,8 +44,8 @@ const Leaderboard = () => {
   };
 
   return (
-    <div className="bg-background-color w-screen h-screen px-4 sm:h-screen overflow-auto">
-      <BackButton onClick={() => navigate(-1)} className="py-4" />
+    <div className="bg-background-color w-screen h-screen p-4 sm:h-screen overflow-auto">
+      <BackButton onClick={() => navigate(-1)} className="" />
 
       <table className="mt-12  rounded-md table-auto w-full h-full min-w-full divide-gray-500 ">
         <thead className=" text-white text-xl w-full">

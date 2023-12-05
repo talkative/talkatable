@@ -65,8 +65,8 @@ const Game = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-background-color flex flex-col relative">
-      <BackButton onClick={() => navigate(-1)} className="p-4" />
+    <div className="w-screen h-screen bg-background-color p-4 flex flex-col relative">
+      <BackButton onClick={() => navigate(-1)} className="" />
 
       <div className="flex top-0 pt-4">
         {gameSession?.map((player) => (
@@ -123,21 +123,21 @@ const Game = () => {
       </div>
 
       {gameFinished ? (
-        <div className="absolute inset-x-0 p-4 bottom-6 flex space-x-4">
-          <div className="p-2 flex-grow">
+        <div className="absolute px-4 inset-x-0 bottom-6 flex space-x-4">
+          <div className="flex-grow">
             <Button className="font-abc w-full" onClick={handleRematch}>
               Rematch
             </Button>
           </div>
-          <div className="p-2 flex-grow">
+          <div className="flex-grow">
             <Button className="font-abc w-full" onClick={handleGoHome}>
               Hem
             </Button>
           </div>
         </div>
       ) : (
-        <div className="absolute inset-x-0 p-4 bottom-6">
-          <div className="pt-2">
+        <div className="absolute inset-x-0 bottom-6">
+          <div className="px-4">
             <Button
               className="font-abc"
               onClick={handleFinishedGame}

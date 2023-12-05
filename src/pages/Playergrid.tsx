@@ -18,9 +18,9 @@ const PlayerGrid = () => {
 
   const navigate = useNavigate();
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
+  // const handleGoBack = () => {
+  //   navigate(-1);
+  // };
 
   const handlePlayer = () => {
     navigate("/Player-Selection");
