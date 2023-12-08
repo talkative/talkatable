@@ -78,8 +78,8 @@ const Leaderboard = () => {
               <td className="text-left font-bold text-blue- py-5 truncate">
                 {item.name}
               </td>
-              <td className="text-center py-5">{item.losses}</td>
               <td className="text-center py-5">{item.wins}</td>
+              <td className="text-center py-5">{item.losses}</td>
               <td className="text-center py-5">{item.rating}</td>
             </tr>
           ))}
