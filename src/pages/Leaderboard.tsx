@@ -40,10 +40,10 @@ const Leaderboard = () => {
   };
 
   return (
-    <div className="w-screen h-full p-4 overflow-auto">
+    <div className="w-screen h-full p-4 ">
       <BackButton onClick={() => navigate(-1)} className="" />
 
-      <table className="mt-12 rounded-md table-auto w-full h-full min-w-full divide-gray-500">
+      <table className="mt-12 absdolute rounded-md table-auto w-full h-full min-w-full divide-gray-500">
         <thead className=" text-white text-xl w-full">
           <tr className="text-white w-full ">
             <th

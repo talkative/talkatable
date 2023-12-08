@@ -14,6 +14,11 @@ const Home = () => {
 
   return (
     <div className="p-4 flex flex-col h-full">
+      <div>
+        <h1 className="font-abc text-white text-center text-4xl mt-12">
+          Talkatable
+        </h1>
+      </div>
       <div className="flex justify-center items-center flex-grow p-4">
         <img
           src="/Talkative-logo.png"
